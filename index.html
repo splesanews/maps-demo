@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>This is the most stylish hotel in the Yorkshire Dales</title>
+    <style>
+      :root {
+        --surface-primary: #f5efeb;
+        --surface-secondary: #ffffff;
+        --surface-tertiary: #f7f5f3;
+        --surface-brand: #01000d;
+
+        --text-primary: #000000;
+        --text-secondary: #333333;
+        --text-tertiary: #696969;
+        --text-brand: #ffffff;
+
+        --interactive-primary-default: #01000d;
+        --interactive-primary-hover: #222;
+        --interactive-primary-pressed: #000;
+
+        --border-primary: #dbdbdb;
+        --border-focus: #01000d;
+
+        --font-brand: "Times Modern", "Times New Roman", Georgia, serif;
+        --font-editorial: "TimesDigitalW04", Georgia, serif;
+        --font-utility: "Times Roboto", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+        --brand-heading-2xlarge: 36px;
+        --brand-heading-2xlarge-lh: 1.125;
+        --brand-heading-xlarge: 34px;
+        --brand-heading-xlarge-lh: 1.125;
+        --brand-heading-large: 32px;
+        --brand-heading-large-lh: 1.125;
+        --brand-standfirst-large: 22px;
+        --brand-standfirst-large-lh: 1.125;
+        --brand-paragraph-medium: 18px;
+        --brand-paragraph-medium-lh: 1.67;
+
+        --utility-label-small: 14px;
+        --utility-label-small-lh: 1.125;
+      }
+
+      @media (min-width: 768px) {
+        :root {
+          --brand-heading-2xlarge: 40px;
+          --brand-heading-xlarge: 36px;
+          --brand-standfirst-large: 24px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        :root {
+          --brand-heading-2xlarge: 46px;
+          --brand-heading-xlarge: 40px;
+        }
+      }
+
+      @media (min-width: 1440px) {
+        :root {
+          --brand-heading-2xlarge: 56px;
+          --brand-heading-xlarge: 46px;
+          --brand-heading-large: 36px;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background: var(--surface-primary);
+        color: var(--text-secondary);
+        font-family: var(--font-editorial);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+      }
+
+      .skip-link:focus {
+        left: 12px;
+        top: 12px;
+        z-index: 1000;
+        background: #fff;
+        padding: 8px 12px;
+        color: #000;
+      }
+
+      .site-header {
+        height: 60px;
+        background: var(--surface-brand);
+        color: var(--text-brand);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .header-inner {
+        width: min(1200px, 100%);
+        height: 100%;
+        display: grid;
+        grid-template-columns: auto auto 1fr auto;
+        align-items: center;
+        gap: 16px;
+        padding: 0 16px;
+      }
+
+      .menu-icon,
+      .search-icon {
+        background: transparent;
+        border: 0;
+        color: var(--text-brand);
+        font-family: var(--font-utility);
+        font-size: 14px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .logo {
+        font-family: var(--font-brand);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--text-brand);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .main-nav {
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .main-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .main-nav ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+      }
+
+      .main-nav a {
+        display: inline-flex;
+        align-items: center;
+        height: 60px;
+        padding: 0 14px;
+        color: var(--text-brand);
+        text-decoration: none;
+        font-family: var(--font-utility);
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .auth-links {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--font-utility);
+        font-size: 14px;
+      }
+
+      .auth-links a {
+        color: var(--text-brand);
+        text-decoration: none;
+      }
+
+      .auth-links .trial {
+        background: #fff;
+        color: #000;
+        padding: 7px 10px;
+      }
+
+      .page {
+        width: min(1024px, calc(100% - 32px));
+        margin: 0 auto;
+        background: var(--surface-secondary);
+      }
+
+      .hero-block {
+        padding-top: 26px;
+      }
+
+      .content-narrow {
+        width: min(574px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .kicker {
+        font-family: var(--font-utility);
+        font-size: 16px;
+        line-height: 1.4;
+        margin: 0 0 18px;
+        color: var(--text-secondary);
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-family: var(--font-brand);
+        font-size: var(--brand-heading-2xlarge);
+        line-height: var(--brand-heading-2xlarge-lh);
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .standfirst {
+        margin: 20px 0;
+        font-family: var(--font-brand);
+        font-size: var(--brand-standfirst-large);
+        line-height: 1.36;
+        color: var(--text-primary);
+      }
+
+      .hero-image {
+        margin: 0;
+        padding: 0;
+      }
+
+      .hero-image img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1022 / 575;
+        object-fit: cover;
+      }
+
+      .byline {
+        margin: 18px auto 0;
+        width: min(574px, calc(100% - 32px));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        font-family: var(--font-utility);
+        font-size: 14px;
+        color: var(--text-secondary);
+      }
+
+      .author {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .author img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .author a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .share {
+        margin: 38px 0 24px;
+        width: min(574px, calc(100% - 32px));
+      }
+
+      .share button {
+        border: 1px solid #000;
+        background: transparent;
+        font-family: var(--font-utility);
+        font-size: 14px;
+        line-height: 1;
+        font-weight: 500;
+        padding: 8px 12px;
+        min-width: 84px;
+      }
+
+      .article-body {
+        width: min(574px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .article-body p {
+        margin: 0 0 24px;
+        font-family: var(--font-editorial);
+        font-size: var(--brand-paragraph-medium);
+        line-height: var(--brand-paragraph-medium-lh);
+        color: var(--text-secondary);
+      }
+
+      .intro::first-letter {
+        float: left;
+        font-family: var(--font-brand);
+        font-size: 58px;
+        line-height: 0.95;
+        padding-right: 4px;
+        color: #000;
+      }
+
+      .article-body h2 {
+        margin: 30px 0 12px;
+        font-family: var(--font-brand);
+        font-size: var(--brand-heading-large);
+        line-height: var(--brand-heading-large-lh);
+        color: var(--text-primary);
+        font-weight: 700;
+      }
+
+      .article-body figure {
+        margin: 0 0 20px;
+      }
+
+      .article-body figure img {
+        width: 100%;
+        display: block;
+      }
+
+      .article-body .scoreline {
+        font-family: var(--font-editorial);
+      }
+
+      .article-body .scoreline strong {
+        color: var(--text-primary);
+      }
+
+      .article-body ul {
+        margin: 0 0 28px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .article-body ul a {
+        font-family: var(--font-utility);
+        font-size: 18px;
+        color: var(--text-primary);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+      }
+
+      .ad-slot {
+        margin: 6px auto 24px;
+        width: 100%;
+      }
+
+      .ad-slot .label {
+        font-family: var(--font-editorial);
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--text-tertiary);
+        margin-bottom: 5px;
+      }
+
+      .ad-slot .box {
+        background: var(--surface-tertiary);
+        border: 1px dashed var(--border-primary);
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-utility);
+        font-size: 13px;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .meta-links,
+      .topic-links,
+      .related {
+        width: min(574px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .meta-links {
+        border-top: 1px solid var(--border-primary);
+        margin-top: 24px;
+        padding-top: 20px;
+      }
+
+      .breadcrumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        font-family: var(--font-utility);
+        font-size: 12px;
+      }
+
+      .breadcrumbs a {
+        color: var(--text-secondary);
+        text-decoration: none;
+      }
+
+      .breadcrumbs .sep {
+        color: #8f8f8f;
+      }
+
+      .topic-links {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-family: var(--font-utility);
+        font-size: 14px;
+      }
+
+      .topic-links a {
+        color: var(--text-secondary);
+      }
+
+      .related {
+        margin-top: 26px;
+      }
+
+      .related h3 {
+        margin: 0 0 18px;
+        font-family: var(--font-brand);
+        font-size: 28px;
+        line-height: 1.25;
+        color: var(--text-primary);
+      }
+
+      .related-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .related-card {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .related-card img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+      }
+
+      .related-card h4 {
+        margin: 10px 0 6px;
+        font-family: var(--font-brand);
+        font-size: 25px;
+        line-height: 1.25;
+        color: var(--text-primary);
+      }
+
+      .related-card time,
+      .related-card .author {
+        display: block;
+        font-family: var(--font-utility);
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--text-secondary);
+      }
+
+      .promoted {
+        margin: 18px auto 0;
+        width: min(574px, calc(100% - 32px));
+        font-family: var(--font-utility);
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+
+      .site-footer {
+        margin-top: 40px;
+        border-top: 1px solid var(--border-primary);
+        background: #f8f4f1;
+      }
+
+      .footer-inner {
+        width: min(1024px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 26px;
+      }
+
+      .footer-top {
+        margin-bottom: 18px;
+        font-family: var(--font-utility);
+        font-size: 14px;
+      }
+
+      .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin-bottom: 26px;
+      }
+
+      .footer-columns h4 {
+        margin: 0 0 10px;
+        font-family: var(--font-brand);
+        font-size: 24px;
+        line-height: 1.25;
+        color: #000;
+      }
+
+      .footer-columns ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .footer-columns li {
+        margin-bottom: 6px;
+      }
+
+      .footer-columns a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-family: var(--font-utility);
+        font-size: 14px;
+      }
+
+      .legal {
+        border-top: 1px solid var(--border-primary);
+        padding-top: 16px;
+        font-family: var(--font-utility);
+        font-size: 12px;
+        color: var(--text-tertiary);
+      }
+
+      .legal-links {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .legal-links a {
+        color: var(--text-tertiary);
+        text-decoration: none;
+      }
+
+      @media (max-width: 900px) {
+        .header-inner {
+          grid-template-columns: auto auto 1fr;
+          gap: 10px;
+        }
+
+        .auth-links {
+          display: none;
+        }
+
+        .logo {
+          font-size: 18px;
+        }
+
+        .page,
+        .footer-inner {
+          width: 100%;
+        }
+
+        .related-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-columns {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#article-main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <button class="menu-icon" aria-label="Open Menu">Menu</button>
+        <button class="search-icon" aria-label="View search">Search</button>
+        <a class="logo" href="#">The Times &amp; The Sunday Times</a>
+        <nav class="main-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">UK</a></li>
+            <li><a href="#">World</a></li>
+            <li><a href="#">Comment</a></li>
+            <li><a href="#">Money</a></li>
+            <li><a href="#">Life &amp; Style</a></li>
+            <li><a href="#">Business</a></li>
+            <li><a href="#">Sport</a></li>
+            <li><a href="#">Culture</a></li>
+            <li><a href="#">Travel</a></li>
+            <li><a href="#">Obituaries</a></li>
+            <li><a href="#">Puzzles</a></li>
+            <li><a href="#">Magazines</a></li>
+          </ul>
+        </nav>
+        <div class="auth-links">
+          <a href="#">Log in</a>
+          <a href="#" class="trial">Start trial</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="article-main" class="page">
+      <article>
+        <section class="hero-block">
+          <div class="content-narrow">
+            <p class="kicker">North and northeast England</p>
+            <h1>This is the most stylish hotel in the Yorkshire Dales</h1>
+            <p class="standfirst">
+              Swish Grantley Hall offers more indulgence than you could hope to cram into one weekend
+              and has added a village pub to its Michelin-starred food and art-covered walls
+            </p>
+          </div>
+
+          <figure class="hero-image">
+            <img
+              src="https://www.thetimes.com/imageserver/image/41a27262-26a1-48a7-8a18-4d1e0e589b2b.jpg?strip=all&amp;format=webp&amp;crop=4724px%2C2657px%2C0px%2C291px&amp;resize=1180"
+              alt="Interior of Grantley Arms pub with a fireplace, leather seating, and decorative foliage."
+            />
+          </figure>
+
+          <div class="byline">
+            <div class="author">
+              <img
+                src="https://www.thetimes.com/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2Fc0b2b48d-d6c2-4e3f-9254-27a8850abd4b.png?w=40"
+                alt="Laura Jackson"
+              />
+              <a href="#">Laura Jackson</a>
+            </div>
+            <div>Monday March 09 2026, 5.00am GMT, The Times</div>
+          </div>
+        </section>
+
+        <div class="share">
+          <button type="button">Share</button>
+        </div>
+
+        <section class="article-body">
+          <p class="intro">
+            As Restoration-era stately piles go, Grantley Hall's low-rise, two-storey exterior near Ripon in
+            the east of the Yorkshire Dales National Park is comparatively understated, but do not be taken in
+            by the subtlety. A £70 million refurb by the owner Valeria Sykes in 2019 restored the 1680s
+            mansion from a council-owned education college into a grand hotel that is a lesson in how to do
+            five-star service and interiors properly. There are 47 lavish bedrooms and suites to kick back in,
+            deep relaxation in the Three Graces Spa and five restaurants and three bars on site, including
+            Shaun Rankin's Michelin-starred spot. The hotel's newest addition, however, the Grantley Arms
+            village pub, a five-minute drive away, is a traditional slice of Yorkshire hospitality complete with
+            tiddlywinks and Timothy Taylor's Landlord on draught.
+          </p>
+
+          <h2>Overall score 9/10</h2>
+          <p><em>This article contains affiliate links that will earn us revenue</em></p>
+
+          <h2>Rooms and suites</h2>
+          <figure>
+            <img
+              src="https://www.thetimes.com/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2F3241843c-fe91-4929-8a27-82d6e01d7b84.jpg?strip=all&amp;format=webp&amp;resize=664"
+              alt="Grantley Hall hotel in North Yorkshire"
+            />
+          </figure>
+
+          <p class="scoreline">
+            <strong>Score</strong> 9/10 Bedrooms and suites are split between two buildings, the old hall and
+            the modern Fountains extension, taking inspiration from the ancient abbey nearby. Regardless of
+            whether you go old or modern, Cosy room or Signature suite, all are finished to the same standard
+            featuring marble bathrooms with Bulgari smellies and underfloor heating, TVs hidden behind artworks
+            and house-made damson gin. Plush soft furnishings from cushions to sofas are in creams and light
+            browns with dark-wood trims, paired with mid-century-style lighting. Comfort factors are heightened
+            thanks to a robe menu; go fluffy, bamboo or waffle. Each bedroom has something distinctive about it,
+            for example Room 20 in the Executive category has a copper bath by the window and Suite 38 comes
+            with a shower that converts to a private sauna. There are two sumptuous suites for the one
+            percenters, the Presidential Suite on the Fountains side houses a grand piano and a bar, while the
+            Royal Suite in the historic wing has an Emperor bed on the mezzanine floor.
+          </p>
+
+          <ul>
+            <li>
+              <a href="#"><strong>Discover the full list: The UK's 50 Best Places to Stay in 2026</strong></a>
+            </li>
+          </ul>
+
+          <h2>Food and drink</h2>
+          <figure>
+            <img
+              src="https://www.thetimes.com/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2F6b2b0196-89f8-423e-a4cb-bcbdd2c69ca3.jpg?strip=all&amp;format=webp&amp;resize=664"
+              alt="Elegant dining room at Grantley Hall with ornate chandeliers, decorated walls, and tables set with white tablecloths."
+            />
+          </figure>
+
+          <p class="scoreline">
+            <strong>Score</strong> 10/10 Expect a weekend at Grantley to feel like a human v food challenge.
+            Top billing goes to Shaun Rankin's restaurant, which has retained its Michelin star for 2026, but
+            the standard everywhere else is exceptional too. Bar &amp; Restaurant EightyEight is in a separate
+            building overlooking the Japanese garden and has an Asian theme. Start with a Haiku cocktail in the
+            bar upstairs then head downstairs to the restaurant for delicate lobster and prawn dumplings, beef
+            fillet and phenomenal sides including a KFC, Korean fried cauliflower.
+          </p>
+
+          <div class="ad-slot" role="complementary" aria-label="Advertisement">
+            <div class="label">Advertisement</div>
+            <div class="box">Ad placement</div>
+          </div>
+
+          <p>
+            Details are what make Grantley worth the room rates. Order a full English during breakfast at
+            Fletchers not just for the sausage and black pudding but the bulbous deep spoon designed for
+            scooping baked beans. There is humour too. Wooden owls roost on perches in Fletchers, while in the
+            Orchard, a tented restaurant and Moët &amp; Chandon bar serving fine tapas and larger sharing plates,
+            has a vintage Fiat 500 parked by the entrance.
+          </p>
+
+          <figure>
+            <img
+              src="https://www.thetimes.com/imageserver/image/a18c75f3-b894-426e-a459-1894d40ca4e9.jpg?strip=all&amp;format=webp&amp;resize=2360"
+              alt="Outdoor patio seating at Grantley Arms pub."
+            />
+          </figure>
+
+          <p>
+            Opened in summer 2025, the Grantley Arms is the hotel's pub a 20-minute walk away in Grantley
+            village (it's uphill so do ask for a lift at reception). In the warm-toned 17th-century sandstone
+            building the food here goes beyond gastropub grub, starters such as scallop risotto and mains of
+            venison with haggis balls sit on the menu next to brick-sized burgers and fish and chips. The
+            family have kept the trad boozer vibes with a huge fireplace, wooden stools and original flagstone
+            floors.
+          </p>
+
+          <p>
+            Service everywhere is slick and devoid of five-star stuffiness, expect chatty and mostly local
+            Yorkshire staff who cannot do enough for you.
+          </p>
+
+          <h2>What else is there?</h2>
+          <figure>
+            <img
+              src="https://www.thetimes.com/imageserver/image/2586eda0-054d-4528-808e-356897e96206.jpg?strip=all&amp;format=webp&amp;resize=2360"
+              alt="The Grantley Arms pub, a stone building with ivy, outdoor seating, and a yellow sports car parked outside."
+            />
+          </figure>
+
+          <p>
+            The Three Graces Spa is a big draw, in a purpose-built Roman-style complex complete with decorative
+            obelisks and classical statues, an 18m swimming pool and heated indoor-outdoor hydrotherapy pool.
+            Brave the cold in the sub-zero snow room that's handily between the sauna and steam room. The
+            treatment menu has offerings from the Harley Street brand 111Skin (its two-hour facial starts with a
+            footbath, back massage and facial) and the Spanish skincare specialists Natura Bissé, with full body
+            massages to manicures available.
+          </p>
+
+          <p>
+            Across from the spa, the Elite gym, with the latest LifeFitness cardio and weights machines, would
+            please a professional athlete. Outside there are 38 acres of grounds, including a charming Japanese
+            garden and walks by the River Skell.
+          </p>
+
+          <div class="ad-slot" role="complementary" aria-label="Advertisement">
+            <div class="label">Advertisement</div>
+            <div class="box">Ad placement</div>
+          </div>
+
+          <p>
+            Motorsports are beloved here and in addition to the indoor simulator there are supercars from
+            Lamborghinis to Porsches to browse, lining the drive. Oh, and should you be arriving by chopper
+            there is a helipad a few minutes from the front door too.
+          </p>
+
+          <ul>
+            <li>
+              <a href="#"><strong>Read more about Grantley Hall's spa</strong></a>
+            </li>
+          </ul>
+
+          <h2>Where is it?</h2>
+          <figure>
+            <img
+              src="https://www.thetimes.com/imageserver/image/methode%2Ftimes%2Fprod%2Fweb%2Fbin%2Fb1e32c9f-40d6-46b5-a2b1-72c544efcf8b.jpg?strip=all&amp;format=webp&amp;resize=1328"
+              alt="Grantley Hall at dusk."
+            />
+          </figure>
+
+          <p>
+            <strong>Score</strong> 9/10 If you are not coming by car (or helicopter), the nearest stations are
+            Thirsk (40-minutes drive northeast) or Harrogate (30-minutes southeast). Grantley Hall is a
+            ten-minute drive from Ripon and its cathedral and Fountains Abbey. For hikers the
+            <a href="#">Yorkshire</a> Dales to the west and North York Moors to the east are calling.
+          </p>
+
+          <p>
+            <strong>Price</strong> B&amp;B doubles from £655 <strong>Restaurant</strong> mains from £31 (at
+            EightyEight) <strong>Accessible</strong> Y <strong>Family-friendly</strong> N (no under-nines)
+            <strong>Dog-friendly</strong> N
+          </p>
+
+          <p><em>Laura Jackson was a guest of Grantley Hall (grantleyhall.co.uk)</em></p>
+        </section>
+
+        <section class="meta-links">
+          <nav class="breadcrumbs" aria-label="breadcrumbs">
+            <a href="#">Travel</a>
+            <span class="sep">/</span>
+            <a href="#">Destinations</a>
+            <span class="sep">/</span>
+            <a href="#">UK</a>
+            <span class="sep">/</span>
+            <a href="#">England</a>
+            <span class="sep">/</span>
+            <a href="#">Yorkshire</a>
+          </nav>
+        </section>
+
+        <section class="topic-links">
+          <a href="#">Hotels</a>
+          <a href="#">Hotel reviews</a>
+        </section>
+
+        <section class="related">
+          <h3>Related articles</h3>
+          <div class="related-grid">
+            <a class="related-card" href="#">
+              <img
+                src="https://www.thetimes.com/imageserver/image/dc2e159e-05da-4193-9043-9521ab82ad28.gif?strip=all&amp;format=webp&amp;crop=599px%2C337px%2C0px%2C0px&amp;resize=750"
+                alt="Revealed: the 50 best places to stay in the UK for 2026"
+              />
+              <h4>Revealed: the 50 best places to stay in the UK for 2026</h4>
+              <time datetime="2026-03-10">March 10, 2026, 2.46pm</time>
+              <span class="author">Jenny Coad | Lizzie Frainier</span>
+            </a>
+
+            <a class="related-card" href="#">
+              <img
+                src="https://www.thetimes.com/imageserver/image/eec1ce88-6a22-4044-a3a0-506ce92abd75.jpg?strip=all&amp;format=webp&amp;crop=5952px%2C3348px%2C0px%2C299px&amp;resize=750"
+                alt="This fantastical Scottish island stay is our Hotel of the Year 2026"
+              />
+              <h4>This fantastical Scottish island stay is our Hotel of the Year 2026</h4>
+              <time datetime="2026-03-11">March 11, 2026, 5.03pm</time>
+              <span class="author">Jenny Coad</span>
+            </a>
+          </div>
+        </section>
+
+        <p class="promoted">Promoted Content</p>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-top"><a href="#article-main">Back to top</a></div>
+
+        <div class="footer-columns">
+          <section>
+            <h4>Get in touch</h4>
+            <ul>
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Contact us</a></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>More from The Times</h4>
+            <ul>
+              <li><a href="#">The Times e-paper</a></li>
+              <li><a href="#">Times+</a></li>
+              <li><a href="#">Travel</a></li>
+              <li><a href="#">Puzzles</a></li>
+            </ul>
+          </section>
+
+          <section>
+            <h4>More from News Corp</h4>
+            <ul>
+              <li><a href="#">Barron's</a></li>
+              <li><a href="#">MarketWatch</a></li>
+              <li><a href="#">The Wall Street Journal</a></li>
+              <li><a href="#">talkSPORT</a></li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="legal">
+          <p>
+            © Times Media Limited 2025. Registered in England No. 894646. Registered office: 1 London Bridge
+            Street, SE1 9GF.
+          </p>
+          <div class="legal-links">
+            <a href="#">Privacy &amp; cookie policy</a>
+            <a href="#">Licensing</a>
+            <a href="#">Site map</a>
+            <a href="#">Terms and conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
