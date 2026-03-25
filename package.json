@@ -1,0 +1,42 @@
+{
+  "name": "maps-demo",
+  "version": "1.0.0",
+  "description": "Maps demo with a shadcn-based React map customizer and static supporting pages.",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/splesanews/maps-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/splesanews/maps-demo/issues"
+  },
+  "homepage": "https://github.com/splesanews/maps-demo#readme",
+  "dependencies": {
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-slider": "^1.3.6",
+    "@radix-ui/react-switch": "^1.2.6",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.6.0",
+    "maplibre-gl": "^5.21.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "@vitejs/plugin-react": "^6.0.1",
+    "tailwindcss": "^4.2.2",
+    "vite": "^8.0.2"
+  }
+}

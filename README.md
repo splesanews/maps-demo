@@ -1,38 +1,53 @@
 # Maps Demo
 
-A small static demo site with two HTML entry points:
+A small demo workspace with two kinds of pages:
 
-- `index.html`: an editorial-style article page
-- `map-customizer.html`: an interactive OSM Liberty map styling preview
+- `index.html`: an editorial-style static article page
+- `map-customizer.html`: a Vite-powered React page using local shadcn UI components around a MapLibre preview
 
 ## Project Files
 
 - `index.html`: main static page
-- `map-customizer.html`: map customizer UI powered by MapLibre GL JS
-- `osm-liberty.json`: local OSM Liberty style file used by the customizer
-- `dist/`: bundled Leaflet assets kept with the project
+- `map-customizer.html`: HTML entry point for the React customizer
+- `src/map-customizer/`: map customizer app code
+- `src/components/ui/`: local shadcn-style UI components used by the customizer
+- `osm-liberty.json`: built-in MapLibre style used as the default preview theme
 - `Design System.md`: design notes for the visual system
 
 ## Run Locally
 
-This project does not require a build step. Serve the folder with any static file server.
-
-Example:
+Install dependencies once:
 
 ```bash
-python3 -m http.server 1112
+npm install
+```
+
+Start the Vite dev server:
+
+```bash
+npm run dev
 ```
 
 Then open:
 
-- `http://127.0.0.1:1112/`
-- `http://127.0.0.1:1112/map-customizer.html`
+- `http://127.0.0.1:5173/`
+- `http://127.0.0.1:5173/map-customizer.html`
+
+To build a production bundle:
+
+```bash
+npm run build
+```
+
+The production files are written to `build/` so the checked-in Leaflet assets under `dist/` stay untouched.
 
 ## Map Customizer Notes
 
-The customizer loads `osm-liberty.json` locally and renders it with MapLibre GL JS from a CDN.
+The customizer renders the preview in MapLibre while keeping the control panel in local shadcn UI components.
 
-The original style references a MapTiler vector tile source with an API key placeholder. In the preview, that source is adapted at runtime to use OpenFreeMap vector tiles so the style can render without a private key.
+You can upload a MapLibre style JSON exported from Maputnik to preview color and layer styling changes live. Common `openmaptiles` / MapTiler placeholder sources are adapted to OpenFreeMap automatically for previewing without a private key.
+
+The output JSON and file import flow cover the exposed camera and UI settings. Style uploads are handled separately through the Map Style card, though config imports also support an embedded `styleDocument` object if you add one manually.
 
 ## Git
 

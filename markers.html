@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map Markers</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body, #map { width: 100%; height: 100%; }
+
+    /* ── Map Marker ── */
+    .map-marker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #1c4f72;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.30), 0 1px 4px rgba(0, 0, 0, 0.18);
+      color: #ffffff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .map-marker:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.36), 0 2px 6px rgba(0, 0, 0, 0.22);
+    }
+
+    /* size variants */
+    .map-marker--lg { width: 60px; height: 60px; font-size: 22px; border-width: 3.5px; }
+    .map-marker--md { width: 48px; height: 48px; font-size: 18px; border-width: 3px; }
+    .map-marker--sm { width: 38px; height: 38px; font-size: 14px; border-width: 2.5px; }
+
+    /* ── Cluster ── */
+    .cluster-outer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(198, 84, 38, 0.30);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .cluster-outer:hover { transform: scale(1.06); }
+
+    .cluster-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #c65426;
+      color: #ffffff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* cluster sizes based on count */
+    .cluster-outer--sm  { width: 52px;  height: 52px; }
+    .cluster-outer--md  { width: 64px;  height: 64px; }
+    .cluster-outer--lg  { width: 78px;  height: 78px; }
+
+    .cluster-inner--sm  { width: 38px;  height: 38px; font-size: 15px; }
+    .cluster-inner--md  { width: 48px;  height: 48px; font-size: 18px; }
+    .cluster-inner--lg  { width: 60px;  height: 60px; font-size: 22px; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // ── Helper: create a numbered map marker icon ──────────────────────────
+    function markerIcon(number, size = 'md') {
+      const dims = { lg: 60, md: 48, sm: 38 };
+      const px   = dims[size] ?? dims.md;
+      return L.divIcon({
+        className: '',          // suppress default leaflet styles
+        iconSize:    [px, px],
+        iconAnchor:  [px / 2, px / 2],
+        popupAnchor: [0, -(px / 2 + 4)],
+        html: `<div class="map-marker map-marker--${size}">#${number}</div>`
+      });
+    }
+
+    // ── Helper: create a cluster icon ─────────────────────────────────────
+    function clusterIcon(count) {
+      let size;
+      if      (count < 10)  size = 'sm';
+      else if (count < 100) size = 'md';
+      else                  size = 'lg';
+
+      const outerDims = { sm: 52, md: 64, lg: 78 };
+      const px = outerDims[size];
+
+      return L.divIcon({
+        className: '',
+        iconSize:    [px, px],
+        iconAnchor:  [px / 2, px / 2],
+        popupAnchor: [0, -(px / 2 + 4)],
+        html: `
+          <div class="cluster-outer cluster-outer--${size}">
+            <div class="cluster-inner cluster-inner--${size}">${count}</div>
+          </div>`
+      });
+    }
+
+    // ── Map ───────────────────────────────────────────────────────────────
+    const map = L.map('map', { zoomControl: true }).setView([48.8566, 2.3522], 5);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+      maxZoom: 19
+    }).addTo(map);
+
+    // ── Random markers ────────────────────────────────────────────────────
+    function randLat() { return (Math.random() * 140) - 70; }   // -70 … 70
+    function randLng() { return (Math.random() * 360) - 180; }  // -180 … 180
+    const sizes = ['lg', 'md', 'sm'];
+
+    // 15 individual numbered markers
+    for (let i = 1; i <= 15; i++) {
+      const size = sizes[Math.floor(Math.random() * sizes.length)];
+      L.marker([randLat(), randLng()], { icon: markerIcon(i, size) })
+        .addTo(map)
+        .bindPopup(`Marker #${i}`);
+    }
+
+    // 8 cluster markers with random counts
+    for (let i = 0; i < 8; i++) {
+      const count = Math.floor(Math.random() * 200) + 2;
+      L.marker([randLat(), randLng()], { icon: clusterIcon(count) })
+        .addTo(map)
+        .bindPopup(`${count} locations`);
+    }
+  </script>
+</body>
+</html>

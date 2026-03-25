@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+:root {
+  --surface-primary: #f5efeb;
+  --surface-secondary: #fdfaf7;
+  --surface-tertiary: #ebe3dd;
+  --surface-brand: #1c4f72;
+  --text-primary: #271711;
+  --text-secondary: #54423a;
+  --text-tertiary: #7f6c63;
+  --text-brand: #1c4f72;
+  --border-primary: #d8cbc2;
+  --interactive-primary-default: #1c4f72;
+  --interactive-primary-hover: #143955;
+  --interactive-primary-pressed: #0d263a;
+  --feedback-error: #b42318;
+  --feedback-warning: #b54708;
+  --feedback-success: #027a48;
+  --feedback-info: #175cd3;
+  --font-brand: Georgia, "Times New Roman", serif;
+  --font-editorial: Georgia, "Times New Roman", serif;
+  --font-utility: "Times Roboto", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-utility);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.maplibregl-map {
+  height: 100%;
+  width: 100%;
+  font-family: var(--font-utility);
+  background: #dce6ee;
+}
+
+.maplibregl-ctrl-group button,
+.maplibregl-ctrl-attrib {
+  font-family: var(--font-utility);
+}
+
+.maplibregl-popup-content {
+  font-family: var(--font-utility);
+  color: var(--text-primary);
+}
+
+.map-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #1c4f72;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.18);
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.map-marker:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.36), 0 2px 6px rgba(0, 0, 0, 0.22);
+}
+
+.map-marker--lg {
+  width: 60px;
+  height: 60px;
+  font-size: 22px;
+  border-width: 3.5px;
+}
+
+.map-marker--md {
+  width: 48px;
+  height: 48px;
+  font-size: 18px;
+  border-width: 3px;
+}
+
+.map-marker--sm {
+  width: 38px;
+  height: 38px;
+  font-size: 14px;
+  border-width: 2.5px;
+}
+
+.cluster-outer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(198, 84, 38, 0.3);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.cluster-outer:hover {
+  transform: scale(1.06);
+}
+
+.cluster-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #c65426;
+  color: #ffffff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cluster-outer--sm {
+  width: 52px;
+  height: 52px;
+}
+
+.cluster-outer--md {
+  width: 64px;
+  height: 64px;
+}
+
+.cluster-outer--lg {
+  width: 78px;
+  height: 78px;
+}
+
+.cluster-inner--sm {
+  width: 38px;
+  height: 38px;
+  font-size: 15px;
+}
+
+.cluster-inner--md {
+  width: 48px;
+  height: 48px;
+  font-size: 18px;
+}
+
+.cluster-inner--lg {
+  width: 60px;
+  height: 60px;
+  font-size: 22px;
+}
+
+.maplibregl-marker {
+  cursor: pointer;
+}

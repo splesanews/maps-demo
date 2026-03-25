@@ -749,7 +749,7 @@
       ],
       "layout": {"line-join": "round"},
       "paint": {
-        "line-color": "rgba(150, 128, 122, 1)",
+        "line-color": "rgba(193, 193, 193, 0.7)",
         "line-dasharray": [1, 0.7],
         "line-width": {"base": 1.2, "stops": [[14, 1], [20, 10]]}
       }
@@ -1312,14 +1312,8 @@
       "minzoom": 13,
       "maxzoom": 14,
       "paint": {
-        "fill-color": "rgba(216, 222, 225, 1)",
-        "fill-outline-color": {
-          "base": 1,
-          "stops": [
-            [13, "rgba(215, 220, 224, 1)"],
-            [14, "rgba(179, 189, 194, 1)"]
-          ]
-        }
+        "fill-color": "rgba(236, 236, 236, 1)",
+        "fill-outline-color": "rgba(255, 255, 255, 0)"
       }
     },
     {
